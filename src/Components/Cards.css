@@ -1,0 +1,300 @@
+.edu-nsw-act-cursive-googlefont {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.home{
+    font-family: googlefont, 'Balsamiq Sans', cursive, 'Comfortaa', cursive, 'Edu NSW ACT Cursive', cursive, 'Michroma', sans-serif;
+}
+
+.home{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+background: url('https://tse4.mm.bing.net/th/id/OIP.-ZLFIF6Qu5T6z-TReDEU9AHaE0?w=1920&h=1248&rs=1&pid=ImgDetMain&o=7&rm=3');
+background-repeat: no-repeat;
+background-size: cover;
+}
+.app{
+  width: 100%;
+  max-width: 100%;
+    height: 70vh;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  overflow-x: hidden;
+}
+.section-container {
+  position: relative;
+  width: 40%; 
+  height: 50%;
+  perspective: 1000px;
+}
+.heading {
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    top: 0%;
+    margin: 0;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: 1; 
+    pointer-events: none; 
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background:linear-gradient(to bottom,blue 55%,white 50%);
+    -webkit-text-stroke: 1px blue;
+    background-clip: text;
+    color: transparent;
+}
+
+
+
+.section {
+position: absolute;
+  width: 80%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate 10s infinite linear;
+}
+.box  {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 50%;
+  background:linear-gradient(45deg,rgb(233, 84, 181),blue);
+  top: 10%;
+  left: 20%;  
+  width: 60%;
+  border-radius: 10px;
+  transition: transform 1s;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  cursor: pointer;
+  z-index: 100;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  border: 2px solid black;
+}
+.one {
+  transform: rotateY(0deg) translateZ(400px);
+}  
+.two {
+  transform: rotateY(90deg) translateZ(400px);
+}
+.three {
+  transform: rotateY(180deg) translateZ(400px);
+}
+.four {
+  transform: rotateY(270deg) translateZ(400px);
+}
+@keyframes rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  75% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+    
+  }
+}
+.section-container:hover .section {
+  animation-play-state: paused;
+}
+.box > div{
+    font-size:x-small;
+    color: rgb(24, 24, 24);
+}
+
+@keyframes rotateVertical {
+  0% {
+    transform: rotateX(0deg);
+  }
+  25% {
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-180deg);
+  }
+  75% {
+    transform: rotateX(-270deg);
+  }
+  100% {
+    transform: rotateX(-360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .app {
+    height: auto;
+    min-height: 70vh;
+    padding: 40px 20px;
+  }
+
+  .section-container {
+    width: 70%;
+    height: 320px;
+  }
+
+  .heading {
+    font-size: 42px;
+  }
+
+  .section {
+    width: 100%;
+    animation: rotate 10s infinite linear;
+  }
+
+  .box {
+    width: 64%;
+    left: 18%;
+  }
+
+  .one {
+    transform: rotateY(0deg) translateZ(260px);
+  }
+
+  .two {
+    transform: rotateY(90deg) translateZ(260px);
+  }
+
+  .three {
+    transform: rotateY(180deg) translateZ(260px);
+  }
+
+  .four {
+    transform: rotateY(270deg) translateZ(260px);
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    gap: 30px;
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding: 30px 16px;
+  }
+
+  .section-container {
+    width: min(92vw, 420px);
+    height: 340px;
+    perspective: 900px;
+  }
+
+  .heading {
+    font-size: clamp(28px, 8vw, 38px);
+    top: 8%;
+  }
+
+  .section {
+    width: 100%;
+    animation: rotateVertical 10s infinite linear;
+  }
+
+  .box {
+    width: 76%;
+    left: 12%;
+  }
+
+  .one {
+    transform: rotateX(0deg) translateZ(200px);
+  }
+
+  .two {
+    transform: rotateX(90deg) translateZ(200px);
+  }
+
+  .three {
+    transform: rotateX(180deg) translateZ(200px);
+  }
+
+  .four {
+    transform: rotateX(270deg) translateZ(200px);
+  }
+}
+.box > b{
+    font-size: medium;
+    color: white;
+}
+.stat-card-section{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  margin-top: 12px;
+}
+.stat-card{
+    height: 200px;
+    width: 200px;
+  background: black;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: xx-large;;
+  flex-direction: column;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: conic-gradient(from 0deg,white,rgb(215, 17, 189),white,blue);
+  animation: statCardSpin 3s linear infinite;
+  animation-delay: calc(var(--i, 0) * -1.5s);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.95;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background:rgb(141, 165, 218);
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.stat-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes statCardSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
