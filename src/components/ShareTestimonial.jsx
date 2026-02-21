@@ -15,21 +15,13 @@ export default function ShareTestimonial() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value
-    });
+    setFormData({ ...formData, [name]: files ? files[0] : value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // frontend only
-    console.log("User testimonial:", formData);
-
+    console.log(formData);
     alert("Thank you for sharing your testimonial!");
-
     navigate("/");
   };
 
@@ -38,31 +30,11 @@ export default function ShareTestimonial() {
       <form className="testimonial-form" onSubmit={handleSubmit}>
         <h2>Share Your Story</h2>
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          required
-          onChange={handleChange}
-        />
+        <input name="name" placeholder="Your Name" required onChange={handleChange} />
+        <input name="role" placeholder="Your Role" required onChange={handleChange} />
+        <textarea name="text" rows="4" placeholder="Your Experience" required onChange={handleChange} />
 
-        <input
-          type="text"
-          name="role"
-          placeholder="Your Role"
-          required
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="text"
-          placeholder="Your Experience"
-          rows="4"
-          required
-          onChange={handleChange}
-        />
-
-        <label>Rating</label>
+        <label className="label">Rating</label>
         <select name="rating" onChange={handleChange}>
           <option value="5">★★★★★ (5)</option>
           <option value="4">★★★★☆ (4)</option>
@@ -71,13 +43,14 @@ export default function ShareTestimonial() {
           <option value="1">★☆☆☆☆ (1)</option>
         </select>
 
-        <label>Upload Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          name="image"
-          onChange={handleChange}
-        />
+        <label className="label">Upload Image</label>
+        <input type="file" accept="image/*" name="image" onChange={handleChange} />
+
+        {formData.image && (
+          <div className="image-preview">
+            <img src={URL.createObjectURL(formData.image)} alt="Preview" />
+          </div>
+        )}
 
         <button type="submit">Submit</button>
       </form>

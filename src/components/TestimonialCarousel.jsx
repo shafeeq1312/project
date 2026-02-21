@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./TestimonialCarousel.css";
 import { useNavigate } from "react-router-dom";
+import "./TestimonialCarousel.css";
 
 import user1 from "../assets/user1.jpg";
 import user2 from "../assets/user2.jpg";
@@ -49,52 +49,54 @@ const testimonials = [
 export default function TestimonialCarousel() {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const navigate = useNavigate();
+  const total = testimonials.length;
 
-  // 🔁 Auto rotate avatars
   useEffect(() => {
-    const interval = setInterval(() => handleNext(), 3000);
-    return () => clearInterval(interval);
-  }, []);
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % total);
+        setFade(true);
+      }, 300);
+    }, 3000);
 
-  const handleNext = () => {
-    setFade(false);
-    setTimeout(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
-      setFade(true);
-    }, 300);
-  };
+    return () => clearInterval(interval);
+  }, [total]);
 
   const handlePrev = () => {
     setFade(false);
     setTimeout(() => {
-      setIndex((prev) =>
-        prev === 0 ? testimonials.length - 1 : prev - 1
-      );
+      setIndex((prev) => (prev - 1 + total) % total);
       setFade(true);
     }, 300);
   };
-  const navigate = useNavigate();
+
+  const handleNext = () => {
+    setFade(false);
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % total);
+      setFade(true);
+    }, 300);
+  };
 
   return (
     <section className="testimonial-section">
       <div className="testimonial-wrapper">
-        <h2 className="heading">OUR SUCCESS STORIES</h2>
+        <h2 className="testimonial-heading">OUR SUCCESS STORIES</h2>
 
-        <p className="subheading">
+        <p className="testimonial-subheading">
           Real transformations from our learners who've built careers,
           launched startups, and created impact in their communities.
         </p>
 
-        {/* 🔥 ROTATING AVATARS (FROM 2nd CODE) */}
         <div className="avatar-container">
           {testimonials.map((item, i) => {
             let cls = "avatar";
 
             if (i === index) cls += " active";
-            else if (i === (index - 1) % testimonials.length)
-              cls += " left";
-            else if (i === (index + 1) % testimonials.length)
-              cls += " right";
+            else if (i === (index - 1 + total) % total) cls += " left";
+            else if (i === (index + 1) % total) cls += " right";
             else cls += " hidden";
 
             return (
@@ -108,17 +110,16 @@ export default function TestimonialCarousel() {
           })}
         </div>
 
-        
-
         <div className={`content ${fade ? "fade-in" : "fade-out"}`}>
           <p className="text">“{testimonials[index].text}”</p>
           <h4>{testimonials[index].name}</h4>
           <span className="role">{testimonials[index].role}</span>
+
           <div className="rating">
-    {Array.from({ length: testimonials[index].rating }).map((_, i) => (
-      <span key={i}>★</span>
-    ))}
-  </div>
+            {Array.from({ length: testimonials[index].rating }).map((_, i) => (
+              <span key={i}>★</span>
+            ))}
+          </div>
         </div>
 
         <div className="arrows">
@@ -126,10 +127,10 @@ export default function TestimonialCarousel() {
           <button onClick={handleNext}>›</button>
         </div>
 
-       <button className="share-btn" onClick={() => navigate("/share")}>
-  Share Yours
-</button>
-   </div>
+        <button className="share-btn" onClick={() => navigate("/share")}>
+          Share Yours
+        </button>
+      </div>
     </section>
   );
 }
